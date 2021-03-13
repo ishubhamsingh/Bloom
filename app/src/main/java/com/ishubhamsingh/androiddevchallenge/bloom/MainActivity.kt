@@ -26,6 +26,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
+import com.ishubhamsingh.androiddevchallenge.bloom.ui.components.LoginPage
 import com.ishubhamsingh.androiddevchallenge.bloom.ui.components.WelcomePage
 import com.ishubhamsingh.androiddevchallenge.bloom.ui.theme.MyTheme
 import dev.chrisbanes.accompanist.insets.ProvideWindowInsets
