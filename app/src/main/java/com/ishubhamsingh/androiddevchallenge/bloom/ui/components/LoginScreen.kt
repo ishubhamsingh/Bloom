@@ -24,6 +24,10 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.navigate
+import androidx.navigation.compose.rememberNavController
+import com.ishubhamsingh.androiddevchallenge.bloom.navigation.Navigation
 import com.ishubhamsingh.androiddevchallenge.bloom.ui.theme.MyTheme
 import com.ishubhamsingh.androiddevchallenge.bloom.ui.theme.gray
 import com.ishubhamsingh.androiddevchallenge.bloom.ui.theme.green300
@@ -31,7 +35,7 @@ import com.ishubhamsingh.androiddevchallenge.bloom.ui.theme.pink900
 import com.ishubhamsingh.androiddevchallenge.bloom.ui.theme.white
 
 @Composable
-fun LoginPage() {
+fun LoginPage(navController: NavController) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
@@ -91,7 +95,7 @@ fun LoginPage() {
             Spacer(modifier = Modifier.height(16.dp))
 
             Button(
-                onClick = { /*TODO*/ }, shape = MaterialTheme.shapes.medium,
+                onClick = { navController.navigate(Navigation.NAV_HOME_SCREEN) }, shape = MaterialTheme.shapes.medium,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(48.dp)
@@ -113,7 +117,7 @@ fun LoginPage() {
 @Composable
 fun LoginLightPreview() {
     MyTheme {
-        LoginPage()
+        LoginPage(rememberNavController())
     }
 }
 
@@ -121,6 +125,6 @@ fun LoginLightPreview() {
 @Composable
 fun LoginDarkPreview() {
     MyTheme(darkTheme = true) {
-        LoginPage()
+        LoginPage(rememberNavController())
     }
 }

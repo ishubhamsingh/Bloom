@@ -46,6 +46,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import coil.transform.RoundedCornersTransformation
 import com.ishubhamsingh.androiddevchallenge.bloom.ui.models.DesignItem
 import com.ishubhamsingh.androiddevchallenge.bloom.ui.models.Theme
@@ -53,15 +55,15 @@ import com.ishubhamsingh.androiddevchallenge.bloom.ui.models.getDesignData
 import com.ishubhamsingh.androiddevchallenge.bloom.ui.models.getThemeData
 import com.ishubhamsingh.androiddevchallenge.bloom.ui.theme.MyTheme
 import com.ishubhamsingh.androiddevchallenge.bloom.ui.theme.gray
+import com.ishubhamsingh.androiddevchallenge.bloom.ui.theme.green300
 import com.ishubhamsingh.androiddevchallenge.bloom.ui.theme.green900
 import com.ishubhamsingh.androiddevchallenge.bloom.ui.theme.pink100
 import com.ishubhamsingh.androiddevchallenge.bloom.ui.theme.white
 import dev.chrisbanes.accompanist.coil.CoilImage
 import java.util.*
-import androidx.compose.runtime.getValue
 
 @Composable
-fun HomePage() {
+fun HomePage(navController: NavController) {
     Scaffold(
         bottomBar = { HomeBottomNav() },
         backgroundColor = MaterialTheme.colors.background
@@ -72,11 +74,20 @@ fun HomePage() {
 
 @Composable
 fun HomeBottomNav() {
-    BottomNavigation(backgroundColor = if (MaterialTheme.colors.isLight) pink100 else green900, modifier = Modifier.defaultMinSize(minHeight = 56.dp)) {
+    BottomNavigation(
+        backgroundColor = if (MaterialTheme.colors.isLight) pink100 else green900,
+        modifier = Modifier.defaultMinSize(minHeight = 56.dp)
+    ) {
         BottomNavigationItem(
             selected = true,
             onClick = { /*TODO*/ },
-            icon = { Icon(imageVector = Icons.Default.Home, contentDescription = "home", Modifier.size(24.dp)) },
+            icon = {
+                Icon(
+                    imageVector = Icons.Default.Home,
+                    contentDescription = "home",
+                    Modifier.size(24.dp)
+                )
+            },
             label = { Text(text = "Home", style = MaterialTheme.typography.caption) },
             selectedContentColor = if (MaterialTheme.colors.isLight) gray else white,
             unselectedContentColor = if (MaterialTheme.colors.isLight) gray.copy(alpha = 0.5f) else white.copy(
@@ -121,7 +132,13 @@ fun HomeBottomNav() {
         BottomNavigationItem(
             selected = false,
             onClick = { /*TODO*/ },
-            icon = { Icon(imageVector = Icons.Default.ShoppingCart, contentDescription = "cart", Modifier.size(24.dp)) },
+            icon = {
+                Icon(
+                    imageVector = Icons.Default.ShoppingCart,
+                    contentDescription = "cart",
+                    Modifier.size(24.dp)
+                )
+            },
             label = { Text(text = "Cart", style = MaterialTheme.typography.caption) },
             selectedContentColor = if (MaterialTheme.colors.isLight) gray else white,
             unselectedContentColor = if (MaterialTheme.colors.isLight) gray.copy(alpha = 0.5f) else white.copy(
@@ -215,7 +232,7 @@ fun CardRowItem(theme: Theme) {
                     Box(Modifier.height(96.dp)) {
                         CircularProgressIndicator(
                             Modifier.align(Alignment.Center),
-                            color = if (MaterialTheme.colors.isLight) pink100 else green900
+                            color = if (MaterialTheme.colors.isLight) pink100 else green300
                         )
                     }
                 }
@@ -233,19 +250,29 @@ fun CardRowItem(theme: Theme) {
 
 @Composable
 fun HomeCardColumn() {
-    Column {
-        Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier
-            .fillMaxWidth()
-            .paddingFromBaseline(top = 40.dp), verticalAlignment = Alignment.CenterVertically) {
-            Text(text = "Design your home garden", style = MaterialTheme.typography.h1, color = MaterialTheme.colors.onBackground)
-            Icon(imageVector = Icons.Default.FilterList, contentDescription = "filter", Modifier.size(24.dp))
+    Column(modifier = Modifier.padding(bottom = 60.dp)) {
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier
+                .fillMaxWidth()
+                .paddingFromBaseline(top = 40.dp), verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = "Design your home garden",
+                style = MaterialTheme.typography.h1,
+                color = MaterialTheme.colors.onBackground
+            )
+            Icon(
+                imageVector = Icons.Default.FilterList,
+                contentDescription = "filter",
+                Modifier.size(24.dp)
+            )
         }
         Spacer(modifier = Modifier.height(16.dp))
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(8.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            itemsIndexed(getDesignData()){ index, designItem ->
+            itemsIndexed(getDesignData()) { index, designItem ->
                 key(index) {
                     CardColumnItem(designItem = designItem)
                 }
@@ -260,7 +287,8 @@ fun CardColumnItem(designItem: DesignItem) {
     Row(
         Modifier
             .height(64.dp)
-            .fillMaxWidth()) {
+            .fillMaxWidth()
+    ) {
         CoilImage(
             data = designItem.imgUrl,
             contentDescription = "design_item_${designItem.title.toLowerCase(Locale.ROOT)}",
@@ -281,17 +309,38 @@ fun CardColumnItem(designItem: DesignItem) {
             }
         )
 
-        Column(verticalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxHeight(), horizontalAlignment = Alignment.End) {
+        Column(
+            verticalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier.fillMaxHeight(),
+            horizontalAlignment = Alignment.End
+        ) {
 
-            Row(modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 16.dp),horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 16.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 Column() {
-                    Text(text = designItem.title, style = MaterialTheme.typography.h2, color = MaterialTheme.colors.onBackground, modifier = Modifier.paddingFromBaseline(top = 24.dp))
-                    Text(text = "This is a description", style= MaterialTheme.typography.body1, color = MaterialTheme.colors.onBackground)
+                    Text(
+                        text = designItem.title,
+                        style = MaterialTheme.typography.h2,
+                        color = MaterialTheme.colors.onBackground,
+                        modifier = Modifier.paddingFromBaseline(top = 24.dp)
+                    )
+                    Text(
+                        text = "This is a description",
+                        style = MaterialTheme.typography.body1,
+                        color = MaterialTheme.colors.onBackground
+                    )
                 }
 
-                Checkbox(checked = checkedState.value, onCheckedChange = { checkedState.value = !checkedState.value}, modifier = Modifier.size(24.dp))
+                Checkbox(
+                    checked = checkedState.value,
+                    onCheckedChange = { checkedState.value = !checkedState.value },
+                    modifier = Modifier.size(24.dp)
+                )
             }
 
             Divider(modifier = Modifier.padding(start = 8.dp))
@@ -320,7 +369,7 @@ fun CardRowItemDark() {
 @Composable
 fun HomeLightPreview() {
     MyTheme {
-        HomePage()
+        HomePage(rememberNavController())
     }
 }
 
@@ -328,6 +377,6 @@ fun HomeLightPreview() {
 @Composable
 fun HomenDarkPreview() {
     MyTheme(darkTheme = true) {
-        HomePage()
+        HomePage(rememberNavController())
     }
 }

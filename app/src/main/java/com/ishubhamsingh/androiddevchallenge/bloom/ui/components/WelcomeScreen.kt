@@ -20,7 +20,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.navigate
+import androidx.navigation.compose.rememberNavController
 import com.ishubhamsingh.androiddevchallenge.bloom.R
+import com.ishubhamsingh.androiddevchallenge.bloom.navigation.Navigation
 import com.ishubhamsingh.androiddevchallenge.bloom.ui.theme.MyTheme
 import com.ishubhamsingh.androiddevchallenge.bloom.ui.theme.gray
 import com.ishubhamsingh.androiddevchallenge.bloom.ui.theme.green300
@@ -28,9 +32,9 @@ import com.ishubhamsingh.androiddevchallenge.bloom.ui.theme.pink900
 import com.ishubhamsingh.androiddevchallenge.bloom.ui.theme.white
 
 @Composable
-fun WelcomePage() {
+fun WelcomePage(navController: NavController) {
     WelcomeBackground()
-    WelcomeContent()
+    WelcomeContent(navController)
 }
 
 @Composable
@@ -49,7 +53,7 @@ fun WelcomeBackground() {
 }
 
 @Composable
-fun WelcomeContent() {
+fun WelcomeContent(navController: NavController) {
     Column(
         modifier = Modifier.padding(top = 72.dp),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -92,7 +96,7 @@ fun WelcomeContent() {
             )
         }
 
-        TextButton(onClick = { /*TODO*/ }, modifier = Modifier.padding(top = 24.dp)) {
+        TextButton(onClick = { navController.navigate(Navigation.NAV_LOGIN_SCREEN) }, modifier = Modifier.padding(top = 24.dp)) {
             Text(
                 text = "Log in",
                 style = MaterialTheme.typography.button,
@@ -106,7 +110,7 @@ fun WelcomeContent() {
 @Composable
 fun WelcomeLightPreview() {
     MyTheme {
-        WelcomePage()
+        WelcomePage(rememberNavController())
     }
 }
 
@@ -114,6 +118,6 @@ fun WelcomeLightPreview() {
 @Composable
 fun WelcomeDarkPreview() {
     MyTheme(darkTheme = true) {
-        WelcomePage()
+        WelcomePage(rememberNavController())
     }
 }
