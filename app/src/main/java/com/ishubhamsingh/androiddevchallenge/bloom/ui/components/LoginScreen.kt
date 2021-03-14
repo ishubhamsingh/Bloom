@@ -2,6 +2,7 @@ package com.ishubhamsingh.androiddevchallenge.bloom.ui.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -52,14 +53,16 @@ fun LoginPage() {
                 onValueChange = { /*TODO*/ },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 8.dp),
+                    .padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 8.dp)
+                    .defaultMinSize(minHeight = 56.dp),
                 placeholder = {
                     Text(text = "Email address", style = MaterialTheme.typography.body1)
                 })
 
             OutlinedTextField(value = "", onValueChange = { /*TODO*/ }, modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 16.dp, end = 16.dp), placeholder = {
+                .padding(start = 16.dp, end = 16.dp)
+                .defaultMinSize(minHeight = 56.dp), placeholder = {
                 Text(text = "Password (8+ characters)", style = MaterialTheme.typography.body1)
             })
 

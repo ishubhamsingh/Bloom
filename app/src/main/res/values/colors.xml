@@ -23,6 +23,7 @@
     <color name="white_850">#D9FFFFFF</color>
     <color name="white_150">#26FFFFFF</color>
     <color name="gray">#FF232323</color>
+    <color name="card_gray">#FF313131</color>
 
     <color name="green_900">#FF2D3B2D</color>
     <color name="green_300">#FFB8C9B8</color>

@@ -23,6 +23,7 @@ val white = Color(0xFFFFFFFF)
 val white850 = Color(0xD9FFFFFF)
 val white150 = Color(0x26FFFFFF)
 val gray = Color(0xFF232323)
+val cardGray = Color(0xFF313131)
 
 val green900 = Color(0xFF2D3B2D)
 val green300 = Color(0xFFB8C9B8)
