@@ -15,14 +15,9 @@
  */
 package com.ishubhamsingh.androiddevchallenge.bloom
 
-import android.os.Build
 import android.os.Bundle
 import androidx.activity.compose.setContent
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
@@ -59,7 +54,7 @@ fun MyApp() {
 fun NavGraph() {
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = Navigation.NAV_WELCOME_SCREEN ) {
+    NavHost(navController = navController, startDestination = Navigation.NAV_WELCOME_SCREEN) {
         composable(route = Navigation.NAV_WELCOME_SCREEN) {
             WelcomePage(navController)
         }

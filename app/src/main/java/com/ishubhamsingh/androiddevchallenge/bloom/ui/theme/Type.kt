@@ -20,7 +20,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ishubhamsingh.androiddevchallenge.bloom.R
 
@@ -33,10 +32,10 @@ val NunitoSans = FontFamily(
 // Set of Material typography styles to start with
 val typography = Typography(
     h1 = TextStyle(
-       fontFamily = NunitoSans,
-       fontWeight = FontWeight.Bold,
-       fontSize = 18.sp,
-       letterSpacing = 0.sp
+        fontFamily = NunitoSans,
+        fontWeight = FontWeight.Bold,
+        fontSize = 18.sp,
+        letterSpacing = 0.sp
     ),
 
     h2 = TextStyle(

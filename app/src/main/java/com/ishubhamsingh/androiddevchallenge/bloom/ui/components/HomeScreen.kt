@@ -1,3 +1,18 @@
+/*
+ * Copyright 2021 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.ishubhamsingh.androiddevchallenge.bloom.ui.components
 
 import androidx.compose.foundation.clickable
@@ -60,7 +75,7 @@ import com.ishubhamsingh.androiddevchallenge.bloom.ui.theme.green900
 import com.ishubhamsingh.androiddevchallenge.bloom.ui.theme.pink100
 import com.ishubhamsingh.androiddevchallenge.bloom.ui.theme.white
 import dev.chrisbanes.accompanist.coil.CoilImage
-import java.util.*
+import java.util.Locale
 
 @Composable
 fun HomePage(navController: NavController) {
@@ -145,7 +160,6 @@ fun HomeBottomNav() {
                 alpha = 0.5f
             ),
         )
-
     }
 }
 
@@ -179,7 +193,8 @@ fun HomeSearch() {
                 contentDescription = "search",
                 Modifier.size(18.dp)
             )
-        })
+        }
+    )
 }
 
 @Composable
@@ -252,9 +267,11 @@ fun CardRowItem(theme: Theme) {
 fun HomeCardColumn() {
     Column(modifier = Modifier.padding(bottom = 60.dp)) {
         Row(
-            horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier
                 .fillMaxWidth()
-                .paddingFromBaseline(top = 40.dp), verticalAlignment = Alignment.CenterVertically
+                .paddingFromBaseline(top = 40.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
                 text = "Design your home garden",
@@ -344,7 +361,6 @@ fun CardColumnItem(designItem: DesignItem) {
             }
 
             Divider(modifier = Modifier.padding(start = 8.dp))
-
         }
     }
 }
